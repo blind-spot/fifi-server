@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fifi.api", "fifi.api\fifi.api.csproj", "{35EFBFDA-1EFD-4775-A9A8-03C42D88E080}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fifi.domain", "fifi.domain\fifi.domain.csproj", "{39A7BADE-7C15-46CD-9AC2-33F2FB89149C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fifi.data", "fifi.data\fifi.data.csproj", "{839455C2-E1C2-4CF7-9C07-7FAF054117A8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35EFBFDA-1EFD-4775-A9A8-03C42D88E080}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35EFBFDA-1EFD-4775-A9A8-03C42D88E080}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35EFBFDA-1EFD-4775-A9A8-03C42D88E080}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35EFBFDA-1EFD-4775-A9A8-03C42D88E080}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39A7BADE-7C15-46CD-9AC2-33F2FB89149C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39A7BADE-7C15-46CD-9AC2-33F2FB89149C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39A7BADE-7C15-46CD-9AC2-33F2FB89149C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39A7BADE-7C15-46CD-9AC2-33F2FB89149C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{839455C2-E1C2-4CF7-9C07-7FAF054117A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{839455C2-E1C2-4CF7-9C07-7FAF054117A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{839455C2-E1C2-4CF7-9C07-7FAF054117A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{839455C2-E1C2-4CF7-9C07-7FAF054117A8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
