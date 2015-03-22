@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using fifi.data.entities;
+using fifi.domain.models;
 using fifi.domain.repositories;
 
 namespace fifi.api.Controllers
@@ -18,7 +19,22 @@ namespace fifi.api.Controllers
 
             using (var repo = new ReportRepository())
             {
-                var reports = repo.FindAll().ToList();
+                var reports = repo.FindAll()
+                                  .Select(r => new ReportDTO
+                                  {
+                                      Id = r.Id,
+                                      Description = r.Description,
+                                      Incident_Time = r.CreatedOn,
+                                      Mode = r.Mode,
+                                      Location = new LocationDTO
+                                      {
+                                          Cross_Street = r.Address,
+                                          Lat = r.Lat,
+                                          Long = r.Long,
+                                          Narrative = r.Narrative
+                                      }
+                                  })
+                                  .ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, reports);
             }
         }
@@ -28,8 +44,23 @@ namespace fifi.api.Controllers
         {
             using (var repo = new ReportRepository())
             {
-                var report = repo.Find(r => r.Type == "Interaction").ToList();
-                return Request.CreateResponse(HttpStatusCode.OK, report);
+                var reports = repo.FindAll()
+                                  .Select(r => new ReportDTO
+                                  {
+                                      Id = r.Id,
+                                      Description = r.Description,
+                                      Incident_Time = r.CreatedOn,
+                                      Mode = r.Mode,
+                                      Location = new LocationDTO
+                                      {
+                                          Cross_Street = r.Address,
+                                          Lat = r.Lat,
+                                          Long = r.Long,
+                                          Narrative = r.Narrative
+                                      }
+                                  })
+                                  .ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, reports);
             }
         }
 
@@ -38,10 +69,56 @@ namespace fifi.api.Controllers
         {
             using (var repo = new ReportRepository())
             {
-                var report = repo.Find(r => r.Id == id).FirstOrDefault();
+                var report = repo.Find(r => r.Id == id)
+                                 .Select(r => new ReportDTO
+                                 {
+                                     Id = r.Id,
+                                     Description = r.Description,
+                                     Incident_Time = r.CreatedOn,
+                                     Mode = r.Mode,
+                                     Location = new LocationDTO
+                                     {
+                                         Cross_Street = r.Address,
+                                         Lat = r.Lat,
+                                         Long = r.Long,
+                                         Narrative = r.Narrative
+                                     }
+                                 })
+                                 .FirstOrDefault();
                 return Request.CreateResponse(HttpStatusCode.OK, report);
             }
 
+        }
+
+        [ActionName("Interaction")]
+        public HttpResponseMessage PostReport([FromBody]ReportDTO reportDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, reportDTO);
+            }
+
+            using (var repo = new ReportRepository())
+            {
+                var report = new Report
+                {
+                    Lat = reportDTO.Location.Lat,
+                    Long = reportDTO.Location.Long,
+                    Type = "Interaction",
+                    Address = reportDTO.Location.Cross_Street,
+                    Narrative = reportDTO.Location.Narrative,
+                    Mode = reportDTO.Mode,
+                    Description = reportDTO.Description,
+                    CreatedOn = DateTime.Now
+                };
+
+                repo.Add(report);
+                repo.Commit();
+                reportDTO.Id = report.Id;
+
+                return Request.CreateResponse(HttpStatusCode.OK, reportDTO);
+
+            }
         }
 
         [ActionName("Status")]

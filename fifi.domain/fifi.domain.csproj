@@ -47,14 +47,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="interfaces\IRepository.cs" />
+    <Compile Include="models\LocationDTO.cs" />
+    <Compile Include="models\ReportDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="repositories\BaseRepository.cs" />
     <Compile Include="repositories\ReportCategoryRepository.cs" />
     <Compile Include="repositories\ReportRepository.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
