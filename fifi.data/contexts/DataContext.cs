@@ -11,6 +11,7 @@ namespace fifi.data.contexts
     {
 
         public DbSet<ReportCategory> RequestCategories { get; set; }
+        public DbSet<Report> ReportInteractions { get; set; }
         
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

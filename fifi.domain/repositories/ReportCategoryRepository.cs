@@ -6,21 +6,18 @@ using System.Threading.Tasks;
 using fifi.data.contexts;
 using fifi.data.entities;
 
-
 namespace fifi.domain.repositories
 {
-    public class ReportRepository : BaseRepository<Report>
+    public class ReportCategoryRepository : BaseRepository<ReportCategory>
     {
-        public ReportRepository() : base(new DataContext())
+        public ReportCategoryRepository() : base(new DataContext())
         {
 
         }
 
-        public ReportRepository(DataContext context) : base(context)
+        public ReportCategoryRepository(DataContext context) : base(context)
         {
 
         }
-
-
     }
 }

@@ -48,7 +48,10 @@
   <ItemGroup>
     <Compile Include="contexts\BaseContext.cs" />
     <Compile Include="contexts\DataContext.cs" />
+    <Compile Include="entities\GeoLocation.cs" />
+    <Compile Include="entities\Report.cs" />
     <Compile Include="entities\ReportCategory.cs" />
+    <Compile Include="mapping\ReportMap.cs" />
     <Compile Include="mapping\RequestCategoryMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

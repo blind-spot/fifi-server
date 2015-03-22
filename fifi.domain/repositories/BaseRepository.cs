@@ -108,5 +108,10 @@ namespace fifi.domain
         }
 
         #endregion
+
+        public void Commit()
+        {
+            Context.SaveChanges();
+        }
     }
 }
