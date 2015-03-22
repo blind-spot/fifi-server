@@ -14,5 +14,10 @@ namespace fifi.domain.models
         public string Description { get; set; }
         public DateTime Incident_Time { get; set; }
         public string Image { get; set; }
+        public bool Infrastructure { get; set; }
+        public bool Collision { get; set; }
+        public bool PropertyDamage { get; set; }
+        public bool Injury { get; set; }
+        public ModesDTO Modes { get; set; }
     }
 }

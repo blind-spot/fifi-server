@@ -31,6 +31,14 @@ namespace fifi.data.mapping
                 .IsOptional();
             this.Property(p => p.Image)
                 .IsOptional();
+            this.Property(p => p.Infrastructure)
+                .IsOptional();
+            this.Property(p => p.Injury)
+                .IsOptional();
+            this.Property(p => p.Collision)
+                .IsOptional();
+            this.Property(p => p.CollisionModes)
+                .IsOptional();
         }
     }
 }

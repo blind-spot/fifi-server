@@ -34,7 +34,16 @@ namespace fifi.api.Controllers
                                           Lat = r.Lat,
                                           Long = r.Long,
                                           Narrative = r.Narrative
-                                      }
+                                      },
+                                      Modes = new ModesDTO
+                                      {
+                                          Personal = r.Mode,
+                                          //Other = r.CollisionModes.Split(',')
+                                      },
+                                      Infrastructure = r.Infrastructure,
+                                      Injury = r.Injury,
+                                      Collision = r.Collision,
+                                      PropertyDamage = r.PropertyDamage,
                                   })
                                   .ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, reports);
@@ -60,7 +69,16 @@ namespace fifi.api.Controllers
                                           Long = r.Long,
                                           Narrative = r.Narrative
                                       },
-                                      Image = r.Image
+                                      Image = r.Image,
+                                      Modes = new ModesDTO
+                                      {
+                                          Personal = r.Mode,
+                                          //Other = r.CollisionModes.Split(',')
+                                      },
+                                      Infrastructure = r.Infrastructure,
+                                      Injury = r.Injury,
+                                      Collision = r.Collision,
+                                      PropertyDamage = r.PropertyDamage,
                                   })
                                   .ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, reports);
@@ -86,12 +104,20 @@ namespace fifi.api.Controllers
                                          Long = r.Long,
                                          Narrative = r.Narrative
                                      },
-                                     Image = r.Image
+                                     Image = r.Image,
+                                     Modes = new ModesDTO
+                                     {
+                                         Personal = r.Mode,
+                                         //Other = r.CollisionModes.Split(',')
+                                     },
+                                     Infrastructure = r.Infrastructure,
+                                     Injury = r.Injury,
+                                     Collision = r.Collision,
+                                     PropertyDamage = r.PropertyDamage,
                                  })
                                  .FirstOrDefault();
                 return Request.CreateResponse(HttpStatusCode.OK, report);
             }
-
         }
 
         [ActionName("Interaction")]
@@ -113,7 +139,12 @@ namespace fifi.api.Controllers
                     Narrative = reportDTO.Location.Narrative,
                     Mode = reportDTO.Mode,
                     Description = reportDTO.Description,
-                    CreatedOn = DateTime.Now
+                    CreatedOn = DateTime.Now,
+                    Infrastructure = reportDTO.Infrastructure,
+                    Collision =  reportDTO.Collision,
+                    PropertyDamage = reportDTO.PropertyDamage,
+                    Injury = reportDTO.Injury,
+                    CollisionModes = string.Join(",", reportDTO.Modes.Other)
                 };
 
                 repo.Add(report);
@@ -217,7 +248,13 @@ namespace fifi.api.Controllers
                             Mode = "Bike",
                             Description = "Doored on 2nd n seneca",
                             CreatedOn = new DateTime(2015, 3, 20),
-                        Type = "Interaction"
+                            Type = "Interaction",
+                            Infrastructure = true,
+                            Collision = false,
+                            PropertyDamage = false,
+                            Injury = false,
+                            CollisionModes = "",
+                             
                     },
                     new Report { 
                             Lat = -45.708457f,
@@ -227,7 +264,12 @@ namespace fifi.api.Controllers
                             Mode = "Walk",
                             Description = "Trip and fell on the sidewalk",
                             CreatedOn = new DateTime(2015, 3, 20),
-                        Type = "Interaction"
+                            Type = "Interaction",
+                            Infrastructure = true,
+                            Collision = false,
+                            PropertyDamage = false,
+                            Injury = false,
+                            CollisionModes = "Car",
                     },
 
                 };

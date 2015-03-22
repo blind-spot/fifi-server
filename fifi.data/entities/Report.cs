@@ -18,5 +18,10 @@ namespace fifi.data.entities
         public string Description { get; set; }
         public DateTime CreatedOn { get; set; }
         public string Image { get; set; }
+        public bool Infrastructure { get; set; }
+        public bool Collision { get; set; }
+        public bool PropertyDamage { get; set; }
+        public bool Injury { get; set; }
+        public string CollisionModes { get; set; }
     }
 }
