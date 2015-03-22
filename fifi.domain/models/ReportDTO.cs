@@ -13,5 +13,6 @@ namespace fifi.domain.models
         public string Mode { get; set; }
         public string Description { get; set; }
         public DateTime Incident_Time { get; set; }
+        public string Image { get; set; }
     }
 }

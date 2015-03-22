@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using fifi.data.entities;
 using fifi.domain.models;
@@ -57,7 +59,8 @@ namespace fifi.api.Controllers
                                           Lat = r.Lat,
                                           Long = r.Long,
                                           Narrative = r.Narrative
-                                      }
+                                      },
+                                      Image = r.Image
                                   })
                                   .ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, reports);
@@ -82,7 +85,8 @@ namespace fifi.api.Controllers
                                          Lat = r.Lat,
                                          Long = r.Long,
                                          Narrative = r.Narrative
-                                     }
+                                     },
+                                     Image = r.Image
                                  })
                                  .FirstOrDefault();
                 return Request.CreateResponse(HttpStatusCode.OK, report);
@@ -127,23 +131,71 @@ namespace fifi.api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
+        [HttpPost]
+        [ActionName("UploadImage")]
+        public HttpResponseMessage PostImageFile(int id)
+        {
+            if (HttpContext.Current.Request.Files.AllKeys.Any())
+            {
+                // Get the uploaded image from the Files collection
+                var image = HttpContext.Current.Request.Files["image"];
+
+                if (image != null)
+                {
+                    // Validate the uploaded image(optional)
+                    var rand = new Random();
+                    var unique = rand.Next(1000000).ToString();
+                    var ext = Path.GetExtension(image.FileName).ToLower();
+                    var fileName = string.Format("{0}-{1}{2}", id, unique, ext);
+                    if (ext == ".png" || ext == ".jpg")
+                    {
+                        // Get the complete file path
+                        var fileSavePath = Path.Combine(HttpContext.Current.Server.MapPath("~/Images"), fileName);
+
+                        // Save the uploaded file to "Images" folder
+                        image.SaveAs(fileSavePath);
+
+                        using (var repo = new ReportRepository())
+                        {
+                            var report = repo.Find(r => r.Id == id).FirstOrDefault();
+                            if (report != null)
+                            {
+                                report.Image = fileName;
+                                repo.Commit();
+                                return Request.CreateResponse(HttpStatusCode.Created);
+                            }
+                            else
+                            {
+                                // delete file
+                                // report does not exist
+                                return Request.CreateResponse(HttpStatusCode.BadRequest);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // create err invalid file extension (jpg, png)
+                        return Request.CreateResponse(HttpStatusCode.BadRequest);
+                    }
+                }
+                else
+                {
+                    // no image posted
+                    return Request.CreateResponse(HttpStatusCode.BadRequest);
+                }
+            }
+            else
+            {
+                // no image posted
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
 
         [ActionName("Categories")]
         public HttpResponseMessage GetCategories()
         {
             using (var context = new ReportCategoryRepository())
             {
-                //var categories = new[] 
-                //{
-                //    "Abandoned Vehicle",
-                //    "Graffiti Report",
-                //    "Illegal Dumping",
-                //    "Parking Enforcement",
-                //    "Pothole",
-                //    "Streetlight Report",
-                //    "Other Inquiry"
-                //};
-
                 var categories = context.FindAll().ToArray();
 
                 return Request.CreateResponse(HttpStatusCode.OK, categories);

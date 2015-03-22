@@ -29,6 +29,8 @@ namespace fifi.data.mapping
                 .IsOptional();
             this.Property(p => p.Description)
                 .IsOptional();
+            this.Property(p => p.Image)
+                .IsOptional();
         }
     }
 }
