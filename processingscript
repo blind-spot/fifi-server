@@ -1,0 +1,34 @@
+import json
+
+old_file = open('SDOTCollisionsData.json')
+new_file = open('ReportSeed.txt', 'w')
+
+old_format = json.load(old_file)
+old_file.close()
+
+for i in range(500):
+	try: 
+		new_file.write('new Report {\n\t')
+		new_file.write('Lat = ' + old_format[i]["shape"]["latitude"] + 'f,\n\t')
+		new_file.write('Long = ' + old_format[i]["shape"]["longitude"] + 'f,\n\t')
+		new_file.write('Address = "' + old_format[i]["location"] + '",\n\t')
+		new_file.write('Narrative = "test",\n\t')
+		new_file.write('Mode = "test",\n\t')
+		try:
+			new_file.write('Description = "' + old_format[i]["collisiontype"] + '",\n\t')
+		except KeyError:
+			print("collisiontype error for report " + str(i + 1))
+		new_file.write('CreatedOn = new DateTime(2015, 3, 20),\n\t')
+		new_file.write('Type = "Interaction",\n\t')
+		new_file.write('Infrastructure = "false",\n\t')
+		new_file.write('Collision = "true",\n\t')
+		new_file.write('PropertyDamage = "true",\n\t')
+		if old_format[i]["severitydesc"] == "Possible or evident injury collision":
+			new_file.write('Injury = "true",\n\t')
+		else:
+			new_file.write('Injury = "false",\n\t')
+		new_file.write('CollisionModes = "test",\n')
+		new_file.write("},\n\n")
+	except KeyError:
+		print("Data error for report " + str(i + 1) + ". Check around line " + str((1 + i) * 12 + 1)
+			+ " - the number of collisiontype errors before this")
