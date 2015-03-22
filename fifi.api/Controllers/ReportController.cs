@@ -36,14 +36,14 @@ namespace fifi.api.Controllers
                                           Narrative = r.Narrative
                                       },
                                       Modes = new ModesDTO
-                                      {
-                                          Personal = r.Mode,
-                                          //Other = r.CollisionModes.Split(',')
-                                      },
-                                      Infrastructure = r.Infrastructure,
-                                      Injury = r.Injury,
-                                      Collision = r.Collision,
-                                      PropertyDamage = r.PropertyDamage,
+                                     {
+                                         Personal = r.Mode,
+                                         //Other = r.CollisionModes.Split(',')
+                                     },
+                                     Infrastructure = r.Infrastructure,
+                                     Injury = r.Injury,
+                                     Collision = r.Collision,
+                                     PropertyDamage = r.PropertyDamage,
                                   })
                                   .ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, reports);
@@ -108,7 +108,7 @@ namespace fifi.api.Controllers
                                      Modes = new ModesDTO
                                      {
                                          Personal = r.Mode,
-                                         //Other = r.CollisionModes.Split(',')
+                                         //Other = r.CollisionModes.Split(','),
                                      },
                                      Infrastructure = r.Infrastructure,
                                      Injury = r.Injury,
@@ -241,8 +241,8 @@ namespace fifi.api.Controllers
                 var reports = new List<Report>()
                 {
                     new Report { 
-                            Lat = 45.712113f,
-                            Long = -121.527200f, 
+                            Lat = 47.608746f,
+                            Long = -122.336894f, 
                             Address = "301 15th Street, Hood River",
                             Narrative = "test",
                             Mode = "Bike",
@@ -257,8 +257,8 @@ namespace fifi.api.Controllers
                              
                     },
                     new Report { 
-                            Lat = -45.708457f,
-                            Long = -121.514432f,
+                            Lat = 47.60731f,
+                            Long = -122.337066f,
                             Address = "Kaze Sushi, Hood River",
                             Narrative = "test",
                             Mode = "Walk",
@@ -266,12 +266,116 @@ namespace fifi.api.Controllers
                             CreatedOn = new DateTime(2015, 3, 20),
                             Type = "Interaction",
                             Infrastructure = true,
-                            Collision = false,
+                            Collision = true,
+                            PropertyDamage = true,
+                            Injury = true,
+                            CollisionModes = "Car,Walk",
+                    },
+                    new Report { 
+                            Lat = 47.606127f,
+                            Long = -122.337538f,
+                            Address = "Kaze Sushi",
+                            Narrative = "test",
+                            Mode = "Walk",
+                            Description = "Trip and fell on the sidewalk",
+                            CreatedOn = new DateTime(2015, 3, 20),
+                            Type = "Interaction",
+                            Infrastructure = false,
+                            Collision = true,
                             PropertyDamage = false,
-                            Injury = false,
+                            Injury = true,
                             CollisionModes = "Car",
                     },
-
+                    new Report { 
+                            Lat = 47.606818f,
+                            Long = -122.333536f,
+                            Address = "Kaze Sushi/Hood River",
+                            Narrative = "test",
+                            Mode = "Walk",
+                            Description = "Trip and fell on the sidewalk",
+                            CreatedOn = new DateTime(2015, 3, 20),
+                            Type = "Interaction",
+                            Infrastructure = true,
+                            Collision = true,
+                            PropertyDamage = true,
+                            Injury = false,
+                            CollisionModes = "Walk",
+                    },
+                    new Report { 
+                            Lat = 47.606561f,
+                            Long = -122.334115f,
+                            Address = "Kaze Sushi / Hood River",
+                            Narrative = "test",
+                            Mode = "Walk",
+                            Description = "Trip and fell on the sidewalk",
+                            CreatedOn = new DateTime(2015, 3, 20),
+                            Type = "Interaction",
+                            Infrastructure = true,
+                            Collision = true,
+                            PropertyDamage = true,
+                            Injury = true,
+                            CollisionModes = "Walk",
+                    },                    
+                    new Report { 
+                            Lat = 47.606702f,
+                            Long = -122.334984f,
+                            Address = "Kaze Sushi, Hood River",
+                            Narrative = "test",
+                            Mode = "Walk",
+                            Description = "Trip and fell on the sidewalk",
+                            CreatedOn = new DateTime(2015, 3, 20),
+                            Type = "Interaction",
+                            Infrastructure = true,
+                            Collision = true,
+                            PropertyDamage = true,
+                            Injury = true,
+                            CollisionModes = "Car,Walk",
+                    },                    
+                    new Report { 
+                            Lat = 47.608297f,
+                            Long = -122.336454f,
+                            Address = "Kaze Sushi, Hood River",
+                            Narrative = "test",
+                            Mode = "Walk",
+                            Description = "Trip and fell on the sidewalk",
+                            CreatedOn = new DateTime(2015, 3, 20),
+                            Type = "Interaction",
+                            Infrastructure = true,
+                            Collision = true,
+                            PropertyDamage = true,
+                            Injury = true,
+                            CollisionModes = "Car,Walk",
+                    },                    
+                    new Report { 
+                            Lat = 47.609509f,
+                            Long = -122.338364f,
+                            Address = "Kaze Sushi, Hood River",
+                            Narrative = "test",
+                            Mode = "Walk",
+                            Description = "Trip and fell on the sidewalk",
+                            CreatedOn = new DateTime(2015, 3, 20),
+                            Type = "Interaction",
+                            Infrastructure = true,
+                            Collision = true,
+                            PropertyDamage = true,
+                            Injury = true,
+                            CollisionModes = "Car,Walk",
+                    },                    
+                    new Report { 
+                            Lat = 47.611639f,
+                            Long = -122.339523f,
+                            Address = "Kaze Sushi, Hood River",
+                            Narrative = "test",
+                            Mode = "Walk",
+                            Description = "Trip and fell on the sidewalk",
+                            CreatedOn = new DateTime(2015, 3, 20),
+                            Type = "Interaction",
+                            Infrastructure = true,
+                            Collision = true,
+                            PropertyDamage = true,
+                            Injury = true,
+                            CollisionModes = "Car,Walk",
+                    }
                 };
                 foreach (var report in reports)
                 {

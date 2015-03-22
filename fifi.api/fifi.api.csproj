@@ -140,6 +140,11 @@
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Map\index.html" />
+    <Content Include="Map\leaflet-hash.js" />
+    <Content Include="Map\Polyline.encoded.js" />
+    <Content Include="Map\script.js" />
+    <Content Include="Map\style.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -162,6 +167,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Map\LICENSE" />
+    <Content Include="Map\README.md" />
     <None Include="Properties\PublishProfiles\squeakycitizen.pubxml" />
   </ItemGroup>
   <PropertyGroup>
