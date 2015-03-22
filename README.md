@@ -1,5 +1,14 @@
 # fifi-server
 
+### Build Guide
+1. Install Visual Studio 2013 Community (free)  
+2. Clone / Fork repo  
+3. Create fifi.mdf in App_Data  
+4. Run Create.sql script to build db schema  
+5. Run build  
+6. Deploy to hosting provider  
+
+
 ### Get Report categories  
 http://squeakycitizen.azurewebsites.net/api/report/categories  
 
